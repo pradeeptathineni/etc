@@ -38,6 +38,10 @@ parse_branch_color() {
 }
 
 # File System Navigation: #
+alias ..='cd ..'
+alias ~='cd ~'
+alias cdsrc='cd /src'
+alias cdusr='cd /usr'
 alias cdinf='cd ~/infrastructure'
 alias cdfeed='cd /src/feed'
 alias cdshp='cd /src/shp'
@@ -47,8 +51,6 @@ alias cdftest='cd /src/feed/externals/test-dataset'
 alias cdpappy='cd /src/PatientApp'
 alias cdbillpay='cd /src/billpay'
 alias cdmailr='cd /src/mailer'
-alias ..='cd ..'
-alias ~='cd ~'
 #alias up='$(up)'
 
 # File System Lookup: #
