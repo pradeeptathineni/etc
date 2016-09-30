@@ -127,7 +127,6 @@ else
     CLOUD=''
     PREFIX=''
 fi
-e7399278d259b4426eb790e1a839d58fe32fa308
 export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:\w\$(parse_branch_color)\$(parse_git_branch)\n${RESET}  \$ "
 
 # Mysql:
