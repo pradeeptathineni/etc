@@ -40,6 +40,7 @@ parse_branch_color() {
 # File System Navigation: #
 alias ..='cd ..'
 alias ~='cd ~'
+alias cdetc='cd ~/etc'
 alias cdsrc='cd /src'
 alias cdusr='cd /usr'
 alias cdinf='cd ~/infrastructure'
@@ -127,7 +128,7 @@ else
     CLOUD=''
     PREFIX=''
 fi
-export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:\w\$(parse_branch_color)\$(parse_git_branch)\n${RESET}  \$ "
+export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:${OCHRE}\w${RESET}\$(parse_branch_color)\$(parse_git_branch)\n${RESET}  \$ "
 
 # Mysql:
 function show {
