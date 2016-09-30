@@ -4,36 +4,28 @@
 RED="\033[0;31m"
 YELLOW="\033[0;33m"
 GREEN="\033[0;32m"
-OCHRE="\033[38;5;95m"
+CYAN="\033[0;96m"
 BLUE="\033[0;34m"
 WHITE="\033[0;37m"
 RESET="\033[0m"
+BRIGHTRED="\033[0;91m"
+BRIGHTGREEN="\033[0;92m"
+OCHRE="\033[38;5;95m"
 
 #------------------------------------------------------------------------------#
 
 ### ADDED BY DEEP: ###
 
 # Functions: #
-up() {
-    COUNTER=$1
-    while [[ $COUNTER -gt 0 ]]
-        do
-            UP="${UP}../"
-            COUNTER=$(( $COUNTER -1 ))
-        done
-    echo "cd $UP"
-    cd $UP
-    UP=''
-}
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
 parse_branch_color() {
     if [[ $(git diff 2> ~/log.txt | wc -c) == "0" ]]; then
-        echo -e "${GREEN}"
+        echo -e "\033[0;1m${BRIGHTGREEN}"
     else
-        echo -e "${RED}"
+        echo -e "\033[0;1m${BRIGHTRED}"
     fi
 }
 
@@ -52,7 +44,6 @@ alias cdftest='cd /src/feed/externals/test-dataset'
 alias cdpappy='cd /src/PatientApp'
 alias cdbillpay='cd /src/billpay'
 alias cdmailr='cd /src/mailer'
-#alias up='$(up)'
 
 # File System Lookup: #
 alias ls='ls --color=auto'          # generically show files, auto-color
@@ -99,7 +90,8 @@ alias gdom='git diff origin/master'
 alias gmc='git merge origin/client-stable'
 alias gmm='git merge origin/master'
 alias grehard='git reset --hard'
-alias allorigin='cdfeed cdshp cd'
+alias gpm='git checkout master && git pull'
+alias allorigin='echo -e ${CYAN}//PULLING INF//${RESET} && cdinf && gpm && echo -e ${CYAN}//PULLING FEED//${RESET} && cdfeed && gpm && echo -e ${CYAN}//PULLING SHP//${RESET} && cdshp && gpm && echo -e ${CYAN}//PULLING PATIENTAPP//${RESET} && cdpappy && gpm && echo -e ${CYAN}//PULLING MAILER//${RESET} && cdmailr && gpm && cdshp'
 
 # Extras: #
 alias h='history'
@@ -128,7 +120,7 @@ else
     CLOUD=''
     PREFIX=''
 fi
-export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:${OCHRE}\w${RESET}\$(parse_branch_color)\$(parse_git_branch)\n${RESET}  \$ "
+export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:${CYAN}\w${RESET}\$(parse_branch_color)\$(parse_git_branch)\n${RESET}  \$ "
 
 # Mysql:
 function show {
