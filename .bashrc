@@ -23,9 +23,9 @@ parse_git_branch() {
 
 parse_branch_color() {
     if [[ $(git diff 2> ~/log.txt | wc -c) == "0" ]]; then
-        echo -e "\033[0;1m${BRIGHTGREEN}"
+        echo -e "${BRIGHTGREEN}"
     else
-        echo -e "\033[0;1m${BRIGHTRED}"
+        echo -e "${BRIGHTRED}"
     fi
 }
 
@@ -120,7 +120,7 @@ else
     CLOUD=''
     PREFIX=''
 fi
-export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:${CYAN}\w${RESET}\$(parse_branch_color)\$(parse_git_branch)\n${RESET}  \$ "
+export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:${CYAN}\w${RESET}\$(parse_branch_color)\$(parse_git_branch)${RESET}\n  $ "
 
 # Mysql:
 function show {
