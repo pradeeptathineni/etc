@@ -73,12 +73,25 @@ parse_git_branch() {
 }
 
 parse_branch_color() {
-    if [[ $(git diff 2> ~/log.txt | wc -c) == "0" ]]; then
+    if [[ $(git diff 2> /dev/null | wc -c) == "0" ]]; then
         echo -e "${LIGHTGREEN}"
     else
         echo -e "${LIGHTRED}"
     fi
 }
+parse_hostname() {
+    case $HOSTNAME in
+        ("ptathineni-gui")  echo 'figlet "IN DEV ENV"';;
+        (*)                 echo 'ssh ptathineni@192.168.77.77';;
+    esac
+}
+pull_origin_master() { # todo
+    REPOS=("INFRASTRUCTURE" "SHP" "FEED" "PATIENTAPP" "MAILER")
+    for repo in "${REPOS[@]}"; do
+        echo -e "${CYAN}//PULLING ${repo}//${RESET}"
+    done
+}
+
 
 # File System Navigation: #
 alias ..='cd ..'
@@ -97,18 +110,23 @@ alias cdbillpay='cd /src/billpay'
 alias cdmailr='cd /src/mailer'
 
 # File System Lookup: #
-alias ls='ls --color=auto'          # generically show files, auto-color
-alias ls.='ls -d .* --color=auto'   # show hidden files, auto-color
-alias lsl='ls -la --color=auto'     # show files in long-listing format, auto-color
+alias ls='ls --color=auto || ls -G'                     # generically show files, auto-color
+alias ls.='ls -d --color=auto .* || ls -dG .*'          # show hidden files, auto-color
+alias lsl='ls -la --color=auto || ls -laG'              # show files in long-listing format, auto-color
 
 # Confirmation Required for File System Changes: #
 alias mv='mv -i'
 alias cp='cp -i'
 alias ln='ln -i'
 
-# Network: #
-alias ports='netstat -tulanp'       # display all TCP/UDP ports on the server
-alias header='curl -I'              # get web server headers 
+# Network and Server: #
+alias ports='netstat -tulanp'                           # display all TCP/UDP ports on the server
+alias header='curl -I'                                  # get web server headers
+alias devbox=$(parse_hostname)                          # allows ssh into guest dev box from host machine
+
+# Ping: #
+alias ping='ping -c 3'                                  # ping server, stop after 3 packets sent and received
+alias pingf='sudo ping -f -c 100 -D'                    # force ping server as root, stop after 100 packets sent and received
 
 # CPU: #
 alias meminfo='free -m -l -t'                           # get memory info
@@ -149,7 +167,8 @@ alias allorigin='echo -e ${CYAN}//PULLING INF//${RESET} && cdinf && gpm && echo 
 # Extras: #
 alias h='history'
 alias j='jobs -l'
-alias bc='bc -l'                    # calculator wuth math lib support
+alias bc='bc -l'                                        # calculator with math lib support
+alias srcbash='source ~/.bashrc'                        # re-sources shell environment to ~/.bashrc; new changes made to ~/.bashrc will take effect without needing to open a new terminal
 
 #------------------------------------------------------------------------------#
 
