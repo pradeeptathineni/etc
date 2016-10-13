@@ -3,6 +3,7 @@
 # Color Definitions: #
 RED="\033[0;31m"
 YELLOW="\033[0;33m"
+LIGHTYELLOW="\033[0;93m"
 GREEN="\033[0;32m"
 CYAN="\033[0;96m"
 BLUE="\033[0;34m"
@@ -63,6 +64,29 @@ ________________________________________________________________________________
 EOM
 alias scuts='echo "$SCUTS"'
 
+# DEV Title, Figlet Font 'Doh': #
+read -r -d '' DEV << EOM
+________________________________________________________________________
+
+DDDDDDDDDDDDD         EEEEEEEEEEEEEEEEEEEEEE VVVVVVVV           VVVVVVVV
+D::::::::::::DDD      E::::::::::::::::::::E V::::::V           V::::::V
+D:::::::::::::::DD    E::::::::::::::::::::E V::::::V           V::::::V
+DDD:::::DDDDD:::::D   EE::::::EEEEEEEEE::::E V::::::V           V::::::V
+  D:::::D    D:::::D    E:::::E       EEEEEE  V:::::V           V:::::V 
+  D:::::D     D:::::D   E:::::E                V:::::V         V:::::V  
+  D:::::D     D:::::D   E::::::EEEEEEEEEE       V:::::V       V:::::V   
+  D:::::D     D:::::D   E:::::::::::::::E        V:::::V     V:::::V    
+  D:::::D     D:::::D   E:::::::::::::::E         V:::::V   V:::::V     
+  D:::::D     D:::::D   E::::::EEEEEEEEEE          V:::::V V:::::V      
+  D:::::D     D:::::D   E:::::E                     V:::::V:::::V       
+  D:::::D    D:::::D    E:::::E       EEEEEE         V:::::::::V        
+DDD:::::DDDDD:::::D   EE::::::EEEEEEEE:::::E          V:::::::V         
+D:::::::::::::::DD    E::::::::::::::::::::E           V:::::V          
+D::::::::::::DDD      E::::::::::::::::::::E            V:::V           
+DDDDDDDDDDDDD         EEEEEEEEEEEEEEEEEEEEEE             VVV            
+________________________________________________________________________
+EOM
+alias dev='echo -e "${BLUE}${DEV}${RESET}"'
 #------------------------------------------------------------------------------#
 
 ### ADDED BY DEEP: ###
@@ -81,8 +105,11 @@ parse_branch_color() {
 }
 parse_hostname() {
     case $HOSTNAME in
-        ("ptathineni-gui")  echo 'figlet "IN DEV ENV"';;
-        (*)                 echo 'ssh ptathineni@192.168.77.77';;
+        ("ptathineni-gui")  
+            ;;
+        (*)
+            echo 'ssh ptathineni@192.168.77.77'
+            ;;
     esac
 }
 pull_origin_master() { # todo
@@ -122,7 +149,7 @@ alias ln='ln -i'
 # Network and Server: #
 alias ports='netstat -tulanp'                           # display all TCP/UDP ports on the server
 alias header='curl -I'                                  # get web server headers
-alias devbox=$(parse_hostname)                          # allows ssh into guest dev box from host machine
+alias devbox="dev && \$(parse_hostname)"                       # allows ssh into guest dev box from host machine
 
 # Ping: #
 alias ping='ping -c 3'                                  # ping server, stop after 3 packets sent and received
