@@ -137,9 +137,9 @@ alias cdbillpay='cd /src/billpay'
 alias cdmailr='cd /src/mailer'
 
 # File System Lookup: #
-alias ls='ls --color=auto || ls -G'                     # generically show files, auto-color
-alias ls.='ls -d --color=auto .* || ls -dG .*'          # show hidden files, auto-color
-alias lsl='ls -la --color=auto || ls -laG'              # show files in long-listing format, auto-color
+alias ls='ls --color=auto'                              # generically show files, auto-color
+alias ls.='ls -d .*'                                    # show hidden files, auto-color from alias 'ls'
+alias lsl='ls -la'                                      # show files in long-listing format, auto-color from alias 'ls'
 
 # Confirmation Required for File System Changes: #
 alias mv='mv -i'
