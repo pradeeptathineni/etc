@@ -14,6 +14,9 @@ OCHRE="\033[38;5;95m"
 LIGHTGREEN="\033[0;92m"
 LIGHTMAGENTA="\033[0;95m"
 
+# Other Definitions: #
+
+
 # Bash Shortcuts Help: #
 read -r -d '' SCUTS << EOM
 ________________________________________________________________________________
@@ -87,9 +90,6 @@ DDDDDDDDDDDDD         EEEEEEEEEEEEEEEEEEEEEE             VVV
 ________________________________________________________________________
 EOM
 alias dev='echo -e "${BLUE}${DEV}${RESET}"'
-#------------------------------------------------------------------------------#
-
-### ADDED BY DEEP: ###
 
 # Functions: #
 parse_git_branch() {
@@ -119,6 +119,9 @@ pull_origin_master() { # todo
     done
 }
 
+#------------------------------------------------------------------------------#
+
+### ADDED BY DEEP: ###
 
 # File System Navigation: #
 alias ..='cd ..'
@@ -137,7 +140,7 @@ alias cdbillpay='cd /src/billpay'
 alias cdmailr='cd /src/mailer'
 
 # File System Lookup: #
-alias ls='ls --color=auto'                              # generically show files, auto-color
+alias ls='ls -G'                                        # generically show files, auto-color
 alias ls.='ls -d .*'                                    # show hidden files, auto-color from alias 'ls'
 alias lsl='ls -la'                                      # show files in long-listing format, auto-color from alias 'ls'
 
