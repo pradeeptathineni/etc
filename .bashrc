@@ -112,12 +112,6 @@ parse_hostname() {
             ;;
     esac
 }
-pull_origin_master() { # todo
-    REPOS=("INFRASTRUCTURE" "SHP" "FEED" "PATIENTAPP" "MAILER")
-    for repo in "${REPOS[@]}"; do
-        echo -e "${CYAN}//PULLING ${repo}//${RESET}"
-    done
-}
 
 #------------------------------------------------------------------------------#
 
@@ -132,10 +126,11 @@ alias cdusr='cd /usr'
 alias cdinf='cd ~/infrastructure'
 alias cdfeed='cd /src/feed'
 alias cdshp='cd /src/shp'
+alias cdbp='cd /src/billpay'
 alias cdfx='cd /src/feed/externals'
 alias cdsx='cd /src/shp/externals'
 alias cdftest='cd /src/feed/externals/test-dataset'
-alias cdpappy='cd /src/PatientApp'
+alias cdpa='cd /src/PatientApp'
 alias cdbillpay='cd /src/billpay'
 alias cdmailr='cd /src/mailer'
 
@@ -192,7 +187,7 @@ alias grehard='git reset --hard'
 alias gpm='git checkout master && git pull'
 alias gsi='git submodule init'
 alias gsu='git submodule update'
-alias allorigin='echo -e ${CYAN}//PULLING INF//${RESET} && cdinf && gpm && echo -e ${CYAN}//PULLING FEED//${RESET} && cdfeed && gpm && echo -e ${CYAN}//PULLING SHP//${RESET} && cdshp && gpm && echo -e ${CYAN}//PULLING PATIENTAPP//${RESET} && cdpappy && gpm && echo -e ${CYAN}//PULLING MAILER//${RESET} && cdmailr && gpm && cdshp'
+alias allorigin='echo -e ${CYAN}//PULLING INF//${RESET} && cdinf && gpm && echo -e ${CYAN}//PULLING FEED//${RESET} && cdfeed && gpm && echo -e ${CYAN}//PULLING SHP//${RESET} && cdshp && gpm && echo -e ${CYAN}//PULLING PATIENTAPP//${RESET} && cdpa && gpm && echo -e ${CYAN}//PULLING BILLPAY//${RESET} && cdbp && gpm && echo -e ${CYAN}//PULLING MAILER//${RESET} && cdmailr && gpm && cdshp'
 
 # Extras: #
 alias h='history'
