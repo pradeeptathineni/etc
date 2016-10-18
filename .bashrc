@@ -222,6 +222,7 @@ else
     CLOUD=''
     PREFIX=''
 fi
+
 export PS1="\n\e[41m[\T]\e[0m ${PREFIX}${debian_chroot:+($debian_chroot)}\u@\h${CLOUD}:${LIGHTMAGENTA}\w${RESET}\$(parse_branch_color)\$(parse_git_branch)${RESET}\n  $ "
 
 # Mysql:
@@ -244,7 +245,6 @@ alias stripcolor="sed 's/\\x1b\\[[0-9,;]*[mK]//g'"
 # <%=devbox_specific_bashrc%>
 
 
-
 # nsgrep -- general purpose search utility:
 [[ -z "$INCLUDEEXPERIMANTAL" ]] && alias nsgrep='find . -name \*~ -prune -o -name \.git -prune -o -name cache -prune -o -type f -print0 | xargs -0r grep -HnI --color=always' # there is a new version in the experimental section below
     # This started out as 'no-symlink' grep, but has evolved into alot more...
@@ -260,8 +260,6 @@ alias stripcolor="sed 's/\\x1b\\[[0-9,;]*[mK]//g'"
 ## Set go root
 export GOPATH=/src/go
 export PATH=$PATH:/src/go/bin
-
-
 
 
 # EXPERIMENTAL SECTION:
